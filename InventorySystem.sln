@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{4271C5C2-1B81-4B1B-BE0B-6A1A9B9C4D23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystemWebApi", "InventorySystemWebApi\InventorySystemWebApi.csproj", "{24F29275-5DA6-413F-B852-B6ED5E05F21B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4271C5C2-1B81-4B1B-BE0B-6A1A9B9C4D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4271C5C2-1B81-4B1B-BE0B-6A1A9B9C4D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4271C5C2-1B81-4B1B-BE0B-6A1A9B9C4D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4271C5C2-1B81-4B1B-BE0B-6A1A9B9C4D23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6ABF1FE-D835-4F25-9783-68A35E7D6B10}
+	EndGlobalSection
+EndGlobal
