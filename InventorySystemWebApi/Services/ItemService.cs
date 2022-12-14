@@ -21,10 +21,10 @@ namespace InventorySystemWebApi.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ItemDto>?> GetAll()
+        public async Task<PageWraper<ItemDto>?> GetAll(ItemQuery query)
         {
             // Get all items.
-            var items = await _dbContext
+            var itemsAll = await _dbContext
                 .Items
                 .Include(i => i.Type)
                 .Include(i => i.Group)
@@ -32,6 +32,11 @@ namespace InventorySystemWebApi.Services
                 .Include(i => i.Seller)
                 .Include(i => i.Location)
                 .ToListAsync();
+
+            // Pagination.
+            var items = itemsAll
+                .Skip(query.PageSize * (query.PageNumber - 1))
+                .Take(query.PageSize);
 
             if (!items.Any())
             {
@@ -42,7 +47,10 @@ namespace InventorySystemWebApi.Services
             // Mapping to DTO.
             var itemsDto = _mapper.Map<IEnumerable<ItemDto>>(items);
 
-            return itemsDto;
+            // Wrapping items.
+            var result = new PageWraper<ItemDto>(itemsDto, itemsAll.Count());
+
+            return result;
         }
 
         public async Task<ItemDto?> GetByItem(int id)

@@ -16,10 +16,10 @@ namespace InventorySystemWebApi.Controllers
         }
 
         [HttpGet("/api/items")]
-        public async Task<ActionResult<IEnumerable<ItemDto>>> GetAll()
+        public async Task<ActionResult<PageWraper<ItemDto>>> GetAll([FromQuery] ItemQuery query)
         {
             // Get all items.
-            var items = await _itemService.GetAll();
+            var items = await _itemService.GetAll(query);
 
             return StatusCode(StatusCodes.Status200OK, items);
         }
