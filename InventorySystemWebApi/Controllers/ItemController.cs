@@ -21,7 +21,7 @@ namespace InventorySystemWebApi.Controllers
             // Get all items.
             var items = await _itemService.GetAll(query);
 
-            return StatusCode(StatusCodes.Status200OK, items);
+            return Ok(items);
         }
 
         [HttpGet("{id}")]
@@ -30,16 +30,16 @@ namespace InventorySystemWebApi.Controllers
             // Get item about selected id.
             var item = await _itemService.GetByItem(id);
 
-            return StatusCode(StatusCodes.Status200OK, item);
+            return Ok(item);
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateItem([FromBody] CreateItemDto dto)
         {
             // Add new item.
-            var itemId = await _itemService.CreateItem(dto);
+            var itemUri = await _itemService.CreateItem(dto);
 
-            return StatusCode(StatusCodes.Status201Created, itemId);
+            return Created(itemUri, null);
         }
 
         [HttpDelete("{id}")]
@@ -48,7 +48,7 @@ namespace InventorySystemWebApi.Controllers
             // Remove item.
             await _itemService.RemoveItem(id);
 
-            return StatusCode(StatusCodes.Status204NoContent);
+            return NoContent();
         }
     }
 }

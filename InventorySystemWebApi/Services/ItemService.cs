@@ -4,9 +4,7 @@ using Database.Entities;
 using InventorySystemWebApi.Exceptions;
 using InventorySystemWebApi.Intefaces;
 using InventorySystemWebApi.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Sockets;
 
 namespace InventorySystemWebApi.Services
 {
@@ -77,7 +75,7 @@ namespace InventorySystemWebApi.Services
             return itemDto;
         }
 
-        public async Task<int> CreateItem(CreateItemDto dto)
+        public async Task<string> CreateItem(CreateItemDto dto)
         {
             // Mapping from DTO.
             var item = _mapper.Map<Item>(dto);
@@ -86,7 +84,7 @@ namespace InventorySystemWebApi.Services
             _ = _dbContext.Items.Add(item);
             _ = await _dbContext.SaveChangesAsync();
 
-            return item.Id;
+            return $"/api/item/{item.Id}";
         }
 
         public async Task RemoveItem(int id)
