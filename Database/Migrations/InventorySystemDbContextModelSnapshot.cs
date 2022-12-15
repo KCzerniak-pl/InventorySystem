@@ -22,7 +22,7 @@ namespace Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Database.Entities.Group", b =>
+            modelBuilder.Entity("Database.Entities.Item.Group", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace Database.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("Database.Entities.Item", b =>
+            modelBuilder.Entity("Database.Entities.Item.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace Database.Migrations
                         .HasColumnType("datetimeoffset(0)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(MAX)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
@@ -100,7 +100,7 @@ namespace Database.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Database.Entities.Location", b =>
+            modelBuilder.Entity("Database.Entities.Item.Location", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,7 +117,7 @@ namespace Database.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("Database.Entities.Manufacturer", b =>
+            modelBuilder.Entity("Database.Entities.Item.Manufacturer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace Database.Migrations
                     b.ToTable("Manufacturers");
                 });
 
-            modelBuilder.Entity("Database.Entities.Seller", b =>
+            modelBuilder.Entity("Database.Entities.Item.Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,7 +151,7 @@ namespace Database.Migrations
                     b.ToTable("Sellers");
                 });
 
-            modelBuilder.Entity("Database.Entities.Type", b =>
+            modelBuilder.Entity("Database.Entities.Item.Type", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -168,29 +168,83 @@ namespace Database.Migrations
                     b.ToTable("Types");
                 });
 
-            modelBuilder.Entity("Database.Entities.Item", b =>
+            modelBuilder.Entity("Database.Entities.User.Role", b =>
                 {
-                    b.HasOne("Database.Entities.Group", "Group")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("Database.Entities.User.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset>("DateTimeCreated")
+                        .HasColumnType("datetimeoffset(0)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Database.Entities.Item.Item", b =>
+                {
+                    b.HasOne("Database.Entities.Item.Group", "Group")
                         .WithMany("Items")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Database.Entities.Location", "Location")
+                    b.HasOne("Database.Entities.Item.Location", "Location")
                         .WithMany("Items")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Database.Entities.Manufacturer", "Manufacturer")
+                    b.HasOne("Database.Entities.Item.Manufacturer", "Manufacturer")
                         .WithMany("Items")
                         .HasForeignKey("ManufacturerId");
 
-                    b.HasOne("Database.Entities.Seller", "Seller")
+                    b.HasOne("Database.Entities.Item.Seller", "Seller")
                         .WithMany("Items")
                         .HasForeignKey("SellerId");
 
-                    b.HasOne("Database.Entities.Type", "Type")
+                    b.HasOne("Database.Entities.Item.Type", "Type")
                         .WithMany("Items")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -207,29 +261,45 @@ namespace Database.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("Database.Entities.Group", b =>
+            modelBuilder.Entity("Database.Entities.User.User", b =>
+                {
+                    b.HasOne("Database.Entities.User.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Database.Entities.Item.Group", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Database.Entities.Location", b =>
+            modelBuilder.Entity("Database.Entities.Item.Location", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Database.Entities.Manufacturer", b =>
+            modelBuilder.Entity("Database.Entities.Item.Manufacturer", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Database.Entities.Seller", b =>
+            modelBuilder.Entity("Database.Entities.Item.Seller", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Database.Entities.Type", b =>
+            modelBuilder.Entity("Database.Entities.Item.Type", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Database.Entities.User.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database.Entities
+namespace Database.Entities.Item
 {
-    public class Location
+    public class Seller
     {
         public int Id { get; set; }
 

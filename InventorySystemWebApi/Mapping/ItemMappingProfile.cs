@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Database.Entities;
+using Database.Entities.Item;
 using InventorySystemWebApi.Models;
 using System.Data;
 
@@ -11,7 +11,7 @@ namespace InventorySystemWebApi.Mapping
         {
             // Mapping to DTO.
             CreateMap<Item, ItemDto>();
-            CreateMap<Database.Entities.Type, TypeDto>();
+            CreateMap<Database.Entities.Item.Type, TypeDto>();
             CreateMap<Group, GroupDto>();
             CreateMap<Manufacturer, ManufacturerDto>();
             CreateMap<Seller, SellerDto>();

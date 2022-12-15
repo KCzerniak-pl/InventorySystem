@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Database.Entities
+namespace Database.Entities.Item
 {
     public class Item
     {
@@ -12,7 +12,6 @@ namespace Database.Entities
         [Column(TypeName = "nvarchar(150)")]
         public string? Name { get; set; }
 
-        [Column(TypeName = "nvarchar(MAX)")]
         public string? Description { get; set; }
 
         [Required]
@@ -27,7 +26,7 @@ namespace Database.Entities
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string? InventoryNumber { get; set;}
+        public string? InventoryNumber { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string? InvoiceNumber { get; set; }
