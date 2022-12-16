@@ -10,7 +10,7 @@ namespace Database.Entities.Item
 
         [Required]
         [Column(TypeName = "nvarchar(150)")]
-        public string? Name { get; set; }
+        public string Name { get; set; } = default!;
 
         public string? Description { get; set; }
 
@@ -26,13 +26,13 @@ namespace Database.Entities.Item
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string? InventoryNumber { get; set; }
+        public string InventoryNumber { get; set; } = default!;
 
         [Column(TypeName = "nvarchar(255)")]
         public string? InvoiceNumber { get; set; }
 
-        [Column(TypeName = "datetimeoffset(0)")]
-        public DateTimeOffset? InvoiceDate { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? InvoiceDate { get; set; }
 
         public double? Price { get; set; }
 
@@ -41,10 +41,10 @@ namespace Database.Entities.Item
         public int LocationId { get; set; }
 
         // Relationships.
-        public virtual Type? Type { get; set; }
-        public virtual Group? Group { get; set; }
+        public virtual Type Type { get; set; } = default!;
+        public virtual Group Group { get; set; } = default!;
         public virtual Manufacturer? Manufacturer { get; set; }
         public virtual Seller? Seller { get; set; }
-        public virtual Location? Location { get; set; }
+        public virtual Location Location { get; set; } = default!;
     }
 }

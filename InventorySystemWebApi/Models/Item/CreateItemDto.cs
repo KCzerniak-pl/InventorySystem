@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InventorySystemWebApi.Models
+namespace InventorySystemWebApi.Models.Item
 {
     public class CreateItemDto
     {
         [Required]
         [MaxLength(150)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = default!;
 
         [MaxLength(4000)]
         public string? Description { get; set; }

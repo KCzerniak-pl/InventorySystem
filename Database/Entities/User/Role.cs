@@ -10,7 +10,7 @@ namespace Database.Entities.User
 
         [Required]
         [Column(TypeName = "nvarchar(50)")]
-        public string? Name { get; set; }
+        public string Name { get; set; } = default!;
 
         // Relationships.
         public virtual ICollection<User>? Users { get; set; }

@@ -1,24 +1,24 @@
 ﻿using Database.Entities;
 
-namespace InventorySystemWebApi.Models
+namespace InventorySystemWebApi.Models.Item
 {
     public class ItemDto
     {
         public int Id { get; set; }
 
-        public string? Name { get; set; }
+        public string Name { get; set; } = default!;
 
         public string? Description { get; set; }
 
         public DateTimeOffset DateTimeCreated { get; set; }
 
-        public TypeDto? Type { get; set; }
+        public TypeDto Type { get; set; } = default!;
 
-        public GroupDto? Group { get; set; }
+        public GroupDto Group { get; set; } = default!;
 
         public ManufacturerDto? Manufacturer { get; set; }
 
-        public string? InventoryNumber { get; set; }
+        public string InventoryNumber { get; set; } = default!;
 
         public string? InvoiceNumber { get; set; }
 
@@ -28,6 +28,6 @@ namespace InventorySystemWebApi.Models
 
         public SellerDto? Seller { get; set; }
 
-        public LocationDto? Location { get; set;}
+        public LocationDto Location { get; set; } = default!;
     }
 }

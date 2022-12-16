@@ -4,6 +4,7 @@ using Database.Entities.Item;
 using InventorySystemWebApi.Exceptions;
 using InventorySystemWebApi.Intefaces;
 using InventorySystemWebApi.Models;
+using InventorySystemWebApi.Models.Item;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventorySystemWebApi.Services
@@ -19,7 +20,7 @@ namespace InventorySystemWebApi.Services
             _mapper = mapper;
         }
 
-        public async Task<PageWraper<ItemDto>?> GetAll(ItemQuery query)
+        public async Task<PageWraper<ItemDto>> GetAll(PageQuery query)
         {
             // Get all items.
             var itemsAll = await _dbContext
@@ -51,7 +52,7 @@ namespace InventorySystemWebApi.Services
             return result;
         }
 
-        public async Task<ItemDto?> GetByItem(int id)
+        public async Task<ItemDto> GetByItem(int id)
         {
             // Get item about selected id.
             var item = await _dbContext

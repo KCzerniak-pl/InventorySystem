@@ -10,18 +10,18 @@ namespace Database.Entities.User
 
         [Required]
         [Column(TypeName = "nvarchar(50)")]
-        public string? Email { get; set; }
+        public string Email { get; set; } = default!;
 
         [Required]
         [Column(TypeName = "nvarchar(50)")]
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; } = default!;
 
         [Required]
         [Column(TypeName = "nvarchar(50)")]
-        public string? LastName { get; set; }
+        public string LastName { get; set; } = default!;
 
         [Required]
-        public string? PasswordHash { get; set; }
+        public string PasswordHash { get; set; } = default!;
 
         [Required]
         [Column(TypeName = "datetimeoffset(0)")]
@@ -31,6 +31,6 @@ namespace Database.Entities.User
         public int RoleId { get; set; }
 
         // Relationships.
-        public Role? Role { get; set; }
+        public Role Role { get; set; } = default!;
     }
 }

@@ -127,7 +127,7 @@ namespace Database.Migrations
                     ManufacturerId = table.Column<int>(type: "int", nullable: true),
                     InventoryNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     InvoiceNumber = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    InvoiceDate = table.Column<DateTimeOffset>(type: "datetimeoffset(0)", nullable: true),
+                    InvoiceDate = table.Column<DateTime>(type: "date", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: true),
                     SellerId = table.Column<int>(type: "int", nullable: true),
                     LocationId = table.Column<int>(type: "int", nullable: false)

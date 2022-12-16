@@ -10,7 +10,7 @@ namespace Database.Entities.Item
 
         [Required]
         [Column(TypeName = "nvarchar(150)")]
-        public string? Name { get; set; }
+        public string Name { get; set; } = default!;
 
         // Relationships.
         public virtual ICollection<Item>? Items { get; set; }

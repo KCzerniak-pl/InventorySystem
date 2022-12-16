@@ -1,11 +1,15 @@
 ﻿using InventorySystemWebApi.Intefaces;
 using InventorySystemWebApi.Models;
+using InventorySystemWebApi.Models.Item;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventorySystemWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ItemController : ControllerBase
     {
         private readonly IItemService _itemService;
@@ -16,7 +20,7 @@ namespace InventorySystemWebApi.Controllers
         }
 
         [HttpGet("/api/items")]
-        public async Task<ActionResult<PageWraper<ItemDto>>> GetAll([FromQuery] ItemQuery query)
+        public async Task<ActionResult<PageWraper<ItemDto>>> GetAll([FromQuery] PageQuery query)
         {
             // Get all items.
             var items = await _itemService.GetAll(query);

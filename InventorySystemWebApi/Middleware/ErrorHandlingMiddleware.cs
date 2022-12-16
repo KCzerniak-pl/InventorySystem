@@ -15,6 +15,11 @@ namespace InventorySystemWebApi.Middleware
                 context.Response.StatusCode = StatusCodes.Status404NotFound;
                 await context.Response.WriteAsync(exception.Message);
             }
+            catch (BadRequestException exception)
+            {
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsync(exception.Message);
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(InventorySystemDbContext))]
-    [Migration("20221215103927_InitialCreate")]
+    [Migration("20221216094040_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -63,8 +63,8 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTimeOffset?>("InvoiceDate")
-                        .HasColumnType("datetimeoffset(0)");
+                    b.Property<DateTime?>("InvoiceDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("InvoiceNumber")
                         .HasColumnType("nvarchar(255)");
