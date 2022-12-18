@@ -1,3 +1,4 @@
+using Database;
 using Database.Entities.User;
 using InventorySystemWebApi.Intefaces;
 using InventorySystemWebApi.Jwt;
@@ -43,7 +44,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // Context for database connection (required references to the library "Database").
 string? connectonString = builder.Configuration.GetConnectionString(name: "InventorySystemDatabase");
-builder.Services.AddDbContext<Database.InventorySystemDbContext>(opt => opt.UseSqlServer(connectonString));
+builder.Services.AddDbContext<InventorySystemDbContext>(opt => opt.UseSqlServer(connectonString));
 
 // JWT - Get JWT configuration from "appsettings.json" and mapping this to "JwtConfig" object.
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));

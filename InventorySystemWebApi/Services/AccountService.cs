@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -30,6 +31,36 @@ namespace InventorySystemWebApi.Services
             _mapper = mapper;
             _passwordHasher = passwordHasher;
             _jwtConfig = optionsMonitor.CurrentValue;
+        }
+
+        public async Task CreateAccount(CreateAccountDto dto)
+        {   
+            // Check email address is exist.
+            var emailExist = _dbContext.Users.Any(u => u.Email == dto.Email);
+            if (emailExist)
+            {
+                // Custom exception (used middleware).
+                throw new BadRequestException("Your email address is already register.");
+            }
+
+            // Check role for user is exist.
+            var roleExist = _dbContext.Roles.Any(r => r.Id == dto.RoleId);
+            if (!roleExist)
+            {
+                // Custom exception (used middleware).
+                throw new BadRequestException("Role for user is not exist.");
+            }
+
+            // Mapping from DTO.
+            var user = _mapper.Map<User>(dto);
+
+            // Hash the password.
+            var passwordHash = _passwordHasher.HashPassword(user, dto.Password);
+            user.PasswordHash = passwordHash;
+
+            // Add new account.
+            _ = _dbContext.Users.Add(user);
+            _ = await _dbContext.SaveChangesAsync();
         }
 
         public async Task<string> LoginRequest(LoginRequestDto dto)

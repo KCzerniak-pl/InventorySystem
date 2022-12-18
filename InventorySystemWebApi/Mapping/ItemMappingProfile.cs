@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Database.Entities.Item;
 using InventorySystemWebApi.Models.Item;
-using System.Data;
 
 namespace InventorySystemWebApi.Mapping
 {

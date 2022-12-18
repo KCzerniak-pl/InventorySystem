@@ -1,6 +1,7 @@
 ﻿using InventorySystemWebApi.Intefaces;
 using InventorySystemWebApi.Models;
 using InventorySystemWebApi.Models.Account;
+using InventorySystemWebApi.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -16,6 +17,15 @@ namespace InventorySystemWebApi.Controllers
         public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
+        }
+
+        [HttpPost("create")]
+        public async Task<ActionResult> CreateAccount([FromBody] CreateAccountDto dto)
+        {
+            // Add new user.
+            await _accountService.CreateAccount(dto);
+
+            return NoContent();
         }
 
         [HttpPost]
