@@ -17,8 +17,8 @@ builder.Services.AddRouting(c => c.LowercaseUrls = true);
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

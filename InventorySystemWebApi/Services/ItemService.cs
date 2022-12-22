@@ -6,6 +6,7 @@ using InventorySystemWebApi.Intefaces;
 using InventorySystemWebApi.Models;
 using InventorySystemWebApi.Models.Item;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace InventorySystemWebApi.Services
 {
@@ -30,6 +31,7 @@ namespace InventorySystemWebApi.Services
                 .Include(i => i.Manufacturer)
                 .Include(i => i.Seller)
                 .Include(i => i.Location)
+                .Where(c => query.SearchPhrase == null || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
                 .ToListAsync();
 
             // Pagination.
