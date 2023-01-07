@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{4271C5C2-1B81-4B1B-BE0B-6A1A9B9C4D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystemWebApi", "InventorySystemWebApi\InventorySystemWebApi.csproj", "{24F29275-5DA6-413F-B852-B6ED5E05F21B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorySystemWebApi", "InventorySystemWebApi\InventorySystemWebApi.csproj", "{24F29275-5DA6-413F-B852-B6ED5E05F21B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystemWebApi.Tests.Integration", "InventorySystemWebApi.Tests.Integration\InventorySystemWebApi.Tests.Integration.csproj", "{010A92D4-47FB-43B9-B5CF-39502451B025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F29275-5DA6-413F-B852-B6ED5E05F21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010A92D4-47FB-43B9-B5CF-39502451B025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010A92D4-47FB-43B9-B5CF-39502451B025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010A92D4-47FB-43B9-B5CF-39502451B025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010A92D4-47FB-43B9-B5CF-39502451B025}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

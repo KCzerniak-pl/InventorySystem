@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+
+// Add visibility to the tests project.
+[assembly: InternalsVisibleTo("InventorySystemWebApi.Tests.Integration")]
 
 var builder = WebApplication.CreateBuilder(args);
 
