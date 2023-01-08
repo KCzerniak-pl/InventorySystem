@@ -29,10 +29,10 @@ namespace InventorySystemWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> LoginRequest([FromBody] LoginRequestDto loginRequest)
+        public async Task<ActionResult> LoginRequest([FromBody] LoginRequestDto dto)
         {
             // Password verification and generate JWT.
-            var jwt = await _accountService.LoginRequest(loginRequest);
+            var jwt = await _accountService.LoginRequest(dto);
 
             return Ok(jwt);
         }
