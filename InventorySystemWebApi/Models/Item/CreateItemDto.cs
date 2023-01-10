@@ -12,10 +12,10 @@ namespace InventorySystemWebApi.Models.Item
         public string? Description { get; set; }
 
         [Required]
-        public int TypeId { get; set; }
+        public int? TypeId { get; set; }
 
         [Required]
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
 
         public int? ManufacturerId { get; set; }
 
@@ -27,6 +27,6 @@ namespace InventorySystemWebApi.Models.Item
         public int? SellerID { get; set; }
 
         [Required]
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
     }
 }

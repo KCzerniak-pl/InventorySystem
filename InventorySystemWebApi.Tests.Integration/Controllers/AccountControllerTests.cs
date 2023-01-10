@@ -21,7 +21,7 @@ namespace InventorySystemWebApi.Tests.Integration.Controllers
             yield return new object[] { new CreateAccountDto() { FirstName = "John", LastName = "Doe", Email = "john.doe@test.com", RoleId = 2 } }; // Without 'Password'.
             yield return new object[] { new CreateAccountDto() { FirstName = "John", LastName = "Doe", Email = "john.doe@test.com", Password = "password" } }; // Without 'RoleId'.
             yield return new object[] { new CreateAccountDto() { FirstName = "John", LastName = "Doe", Email = "john.doetest.com", Password = "password", RoleId = 2 } }; // Invalid 'Email'.
-            yield return new object[] { new CreateAccountDto() { FirstName = "John", LastName = "Doe", Email = "john.doe@test.com", Password = "password", RoleId = 3 } }; // Invalid 'RoleId'. 
+            yield return new object[] { new CreateAccountDto() { FirstName = "John", LastName = "Doe", Email = "john.doe@test.com", Password = "password", RoleId = 333 } }; // Invalid 'RoleId'. 
         }
 
         public static IEnumerable<object[]> SampleInvalidDataLoginRequestDto()

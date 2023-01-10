@@ -34,7 +34,7 @@ namespace InventorySystemWebApi.Services
         }
 
         public async Task CreateAccount(CreateAccountDto dto)
-        {   
+        {
             // Check email address is exist.
             var emailExist = _dbContext.Users.Any(u => u.Email == dto.Email);
             if (emailExist)
