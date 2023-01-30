@@ -20,6 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(c => c.LowercaseUrls = true);
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
