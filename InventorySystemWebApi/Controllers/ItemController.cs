@@ -32,7 +32,7 @@ namespace InventorySystemWebApi.Controllers
         public async Task<ActionResult<ItemDto>> GetById([FromRoute] int id)
         {
             // Get item about selected id.
-            var item = await _itemService.GetByItem(id);
+            var item = await _itemService.GetById(id);
 
             return Ok(item);
         }

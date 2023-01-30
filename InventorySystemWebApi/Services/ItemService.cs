@@ -54,7 +54,7 @@ namespace InventorySystemWebApi.Services
             return result;
         }
 
-        public async Task<ItemDto> GetByItem(int id)
+        public async Task<ItemDto> GetById(int id)
         {
             // Get item about selected id.
             var item = await _dbContext

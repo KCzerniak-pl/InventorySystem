@@ -6,7 +6,7 @@ namespace InventorySystemWebApi.Intefaces
     public interface IItemService
     {
         Task<PageWraper<ItemDto>> GetAll(PageQuery query);
-        Task<ItemDto> GetByItem(int id);
+        Task<ItemDto> GetById(int id);
         Task<string> CreateItem(CreateItemDto dto);
         Task RemoveItem(int id);
     }
