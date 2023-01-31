@@ -33,9 +33,9 @@ namespace InventorySystemWebApi.Controllers
         public async Task<ActionResult<GroupDto>> GetById([FromRoute] int id)
         {
             // Get group about selected id.
-            var groups = await _groupService.GetById(id);
+            var group = await _groupService.GetById(id);
 
-            return Ok(groups);
+            return Ok(group);
         }
     }
 }

@@ -40,10 +40,10 @@ namespace InventorySystemWebApi.Services
             }
 
             // Mapping to DTO.
-            var itemsDto = _mapper.Map<IEnumerable<GroupDto>>(groups);
+            var groupsDto = _mapper.Map<IEnumerable<GroupDto>>(groups);
 
             // Wrapping groups.
-            var result = new PageWraper<GroupDto>(itemsDto, groupsAll.Count());
+            var result = new PageWraper<GroupDto>(groupsDto, groupsAll.Count());
 
             return result;
         }
