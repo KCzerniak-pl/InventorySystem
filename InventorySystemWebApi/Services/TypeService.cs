@@ -25,7 +25,8 @@ namespace InventorySystemWebApi.Services
             // Get all types.
             var typesAll = await _dbContext
                 .Types
-                .Where(c => query.SearchPhrase == null || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
+                .AsNoTracking()
+                .Where(c => string.IsNullOrEmpty(query.SearchPhrase) || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
                 .ToListAsync();
 
             // Pagination.
@@ -35,11 +36,11 @@ namespace InventorySystemWebApi.Services
 
             if (!types.Any())
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Types not found.");
             }
 
-            // Mapping to DTO.
+            // Map to DTO.
             var typesDto = _mapper.Map<IEnumerable<TypeDto>>(types);
 
             // Wrapping groups.
@@ -53,15 +54,16 @@ namespace InventorySystemWebApi.Services
             // Get type about selected id.
             var type = await _dbContext
                 .Types
+                .AsNoTracking()
                 .FirstOrDefaultAsync(i => i.Id == id);
 
             if (type is null)
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Type not found.");
             }
 
-            // Mapping to DTO.
+            // Map to DTO.
             var typeDto = _mapper.Map<TypeDto>(type);
 
             return typeDto;
