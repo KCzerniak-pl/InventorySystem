@@ -1,18 +1,15 @@
 ﻿using AutoMapper;
 using Database;
-using Database.Entities.Item;
 using Database.Entities.User;
 using InventorySystemWebApi.Exceptions;
 using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Jwt;
 using InventorySystemWebApi.Models.Account;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -35,23 +32,23 @@ namespace InventorySystemWebApi.Services
 
         public async Task CreateAccount(CreateAccountDto dto)
         {
-            // Check email address is exist.
-            var emailExist = _dbContext.Users.Any(u => u.Email == dto.Email);
-            if (emailExist)
+            // Check if email address already exists.
+            var emailExists = await _dbContext.Users.AnyAsync(u => u.Email == dto.Email);
+            if (emailExists)
             {
-                // Custom exception (used middleware).
-                throw new BadRequestException("Your email address is already register.");
+                // Custom exception (to be caught by middleware).
+                throw new BadRequestException("This email address is already registered.");
             }
 
-            // Check role for user is exist.
-            var roleExist = _dbContext.Roles.Any(r => r.Id == dto.RoleId);
-            if (!roleExist)
+            // Check if user role exists.
+            var roleExists = await _dbContext.Roles.AnyAsync(r => r.Id == dto.RoleId);
+            if (!roleExists)
             {
-                // Custom exception (used middleware).
-                throw new BadRequestException("Role for user is not exist.");
+                // Custom exception (to be caught by middleware).
+                throw new BadRequestException("This user role does not exist.");
             }
 
-            // Mapping from DTO.
+            // Map DTO to entity.
             var user = _mapper.Map<User>(dto);
 
             // Hash the password.
@@ -59,40 +56,39 @@ namespace InventorySystemWebApi.Services
             user.PasswordHash = passwordHash;
 
             // Add new account.
-            _ = _dbContext.Users.Add(user);
-            _ = await _dbContext.SaveChangesAsync();
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<string> LoginRequest(LoginRequestDto dto)
         {
-            // Get user by e-mail address.
+            // Get user by email address.
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
 
             if (user is null)
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new BadRequestException("Invalid username or password.");
             }
 
-            // Verify password (AspNetCore Identity).
+            // Verify password using AspNetCore Identity.
             var passwordVerificationResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
 
             if (passwordVerificationResult == PasswordVerificationResult.Failed)
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new BadRequestException("Invalid username or password.");
             }
 
-            // JWT - create token.
-            var jwt = GenerateJwtToken(user);
+            // Create JWT.
+            var jwt = GenerateJwt(user);
 
             return jwt;
         }
 
-        // JWT - create token.
-        protected string GenerateJwtToken(Database.Entities.User.User user)
+        protected string GenerateJwt(Database.Entities.User.User user)
         {
-            // Secret used to sign and verify JWT tokens.
+            // Secret used to sign and verify JWT.
             var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
 
             // Information which used to create a security token.
@@ -114,11 +110,11 @@ namespace InventorySystemWebApi.Services
             };
 
             // Create token.
-            var jwtTokenHandler = new JwtSecurityTokenHandler();
-            var token = jwtTokenHandler.CreateToken(tokenDescriptor);
-            var jwtToken = jwtTokenHandler.WriteToken(token);
+            var jwtHandler = new JwtSecurityTokenHandler();
+            var token = jwtHandler.CreateToken(tokenDescriptor);
+            var jwt = jwtHandler.WriteToken(token);
 
-            return jwtToken;
+            return jwt;
         }
     }
 }
