@@ -20,7 +20,7 @@ namespace InventorySystemWebApi.Services
             _mapper = mapper;
         }
 
-        public async Task<PageWraper<GroupDto>> GetAll(PageQuery query)
+        public async Task<PageWrapper<GroupDto>> GetAll(PageQuery query)
         {
             // Get all groups.
             var groupsAll = await _dbContext
@@ -43,7 +43,7 @@ namespace InventorySystemWebApi.Services
             var groupsDto = _mapper.Map<IEnumerable<GroupDto>>(groups);
 
             // Wrapping groups.
-            var result = new PageWraper<GroupDto>(groupsDto, groupsAll.Count());
+            var result = new PageWrapper<GroupDto>(groupsDto, groupsAll.Count());
 
             return result;
         }

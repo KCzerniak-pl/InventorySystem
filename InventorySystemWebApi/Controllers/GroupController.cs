@@ -21,7 +21,7 @@ namespace InventorySystemWebApi.Controllers
         }
 
         [HttpGet("/api/groups")]
-        public async Task<ActionResult<PageWraper<GroupDto>>> GetAll([FromQuery] PageQuery query)
+        public async Task<ActionResult<PageWrapper<GroupDto>>> GetAll([FromQuery] PageQuery query)
         {
             // Get all groups.
             var groups = await _groupService.GetAll(query);

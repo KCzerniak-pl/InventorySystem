@@ -21,7 +21,7 @@ namespace InventorySystemWebApi.Services
             _mapper = mapper;
         }
 
-        public async Task<PageWraper<ItemDto>> GetAll(PageQuery query)
+        public async Task<PageWrapper<ItemDto>> GetAll(PageQuery query)
         {
             // Get all items.
             var itemsAll = await _dbContext
@@ -49,7 +49,7 @@ namespace InventorySystemWebApi.Services
             var itemsDto = _mapper.Map<IEnumerable<ItemDto>>(items);
 
             // Wrapping items.
-            var result = new PageWraper<ItemDto>(itemsDto, itemsAll.Count());
+            var result = new PageWrapper<ItemDto>(itemsDto, itemsAll.Count());
 
             return result;
         }

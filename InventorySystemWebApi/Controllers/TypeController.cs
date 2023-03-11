@@ -20,7 +20,7 @@ namespace InventorySystemWebApi.Controllers
         }
 
         [HttpGet("/api/types")]
-        public async Task<ActionResult<PageWraper<TypeDto>>> GetAll([FromQuery] PageQuery query)
+        public async Task<ActionResult<PageWrapper<TypeDto>>> GetAll([FromQuery] PageQuery query)
         {
             // Get all types.
             var types = await _typeService.GetAll(query);

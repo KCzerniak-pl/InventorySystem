@@ -20,7 +20,7 @@ namespace InventorySystemWebApi.Services
             _mapper = mapper;
         }
 
-        public async Task<PageWraper<TypeDto>> GetAll(PageQuery query)
+        public async Task<PageWrapper<TypeDto>> GetAll(PageQuery query)
         {
             // Get all types.
             var typesAll = await _dbContext
@@ -43,7 +43,7 @@ namespace InventorySystemWebApi.Services
             var typesDto = _mapper.Map<IEnumerable<TypeDto>>(types);
 
             // Wrapping groups.
-            var result = new PageWraper<TypeDto>(typesDto, typesAll.Count());
+            var result = new PageWrapper<TypeDto>(typesDto, typesAll.Count());
 
             return result;
         }

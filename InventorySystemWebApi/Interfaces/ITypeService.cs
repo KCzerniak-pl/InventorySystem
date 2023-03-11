@@ -5,7 +5,7 @@ namespace InventorySystemWebApi.Interfaces
 {
     public interface ITypeService
     {
-        Task<PageWraper<TypeDto>> GetAll(PageQuery query);
+        Task<PageWrapper<TypeDto>> GetAll(PageQuery query);
         Task<TypeDto> GetById(int id);
     }
 }

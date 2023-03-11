@@ -5,7 +5,7 @@ namespace InventorySystemWebApi.Interfaces
 {
     public interface IGroupService
     {
-        Task<PageWraper<GroupDto>> GetAll(PageQuery query);
+        Task<PageWrapper<GroupDto>> GetAll(PageQuery query);
         Task<GroupDto> GetById(int id);
     }
 }

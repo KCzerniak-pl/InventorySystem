@@ -20,7 +20,7 @@ namespace InventorySystemWebApi.Controllers
         }
 
         [HttpGet("/api/items")]
-        public async Task<ActionResult<PageWraper<ItemDto>>> GetAll([FromQuery] PageQuery query)
+        public async Task<ActionResult<PageWrapper<ItemDto>>> GetAll([FromQuery] PageQuery query)
         {
             // Get all items.
             var items = await _itemService.GetAll(query);
