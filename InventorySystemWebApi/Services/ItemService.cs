@@ -31,7 +31,8 @@ namespace InventorySystemWebApi.Services
                 .Include(i => i.Manufacturer)
                 .Include(i => i.Seller)
                 .Include(i => i.Location)
-                .Where(c => query.SearchPhrase == null || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
+                .AsNoTracking()
+                .Where(c => string.IsNullOrEmpty(query.SearchPhrase) || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
                 .ToListAsync();
 
             // Pagination.
@@ -41,11 +42,11 @@ namespace InventorySystemWebApi.Services
 
             if (!items.Any())
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Items not found.");
             }
 
-            // Mapping to DTO.
+            // Map to DTO.
             var itemsDto = _mapper.Map<IEnumerable<ItemDto>>(items);
 
             // Wrapping items.
@@ -64,15 +65,16 @@ namespace InventorySystemWebApi.Services
                 .Include(i => i.Manufacturer)
                 .Include(i => i.Seller)
                 .Include(i => i.Location)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(i => i.Id == id);
 
             if (item is null)
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Item not found.");
             }
 
-            // Mapping to DTO.
+            // Map to DTO.
             var itemDto = _mapper.Map<ItemDto>(item);
 
             return itemDto;
@@ -80,12 +82,12 @@ namespace InventorySystemWebApi.Services
 
         public async Task<string> CreateItem(CreateItemDto dto)
         {
-            // Mapping from DTO.
+            // Map DTO to entity.
             var item = _mapper.Map<Item>(dto);
 
             // Add new item.
-            _ = _dbContext.Items.Add(item);
-            _ = await _dbContext.SaveChangesAsync();
+            _dbContext.Items.Add(item);
+            await _dbContext.SaveChangesAsync();
 
             return $"/api/item/{item.Id}";
         }
@@ -99,13 +101,13 @@ namespace InventorySystemWebApi.Services
 
             if (item is null)
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Item not found.");
             }
 
             // Remove item.
-            _ = _dbContext.Items.Remove(item);
-            _ = await _dbContext.SaveChangesAsync();
+            _dbContext.Items.Remove(item);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
