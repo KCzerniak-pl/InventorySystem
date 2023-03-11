@@ -3,7 +3,7 @@ using Database;
 using Database.Entities.Item;
 using Database.Entities.User;
 using InventorySystemWebApi.Exceptions;
-using InventorySystemWebApi.Intefaces;
+using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Jwt;
 using InventorySystemWebApi.Models.Account;
 using Microsoft.AspNetCore.Identity;

@@ -1,4 +1,4 @@
-﻿using InventorySystemWebApi.Intefaces;
+﻿using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Models.Item;
 using InventorySystemWebApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

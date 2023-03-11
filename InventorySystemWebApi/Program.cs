@@ -1,6 +1,6 @@
 using Database;
 using Database.Entities.User;
-using InventorySystemWebApi.Intefaces;
+using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Jwt;
 using InventorySystemWebApi.Middleware;
 using InventorySystemWebApi.Services;

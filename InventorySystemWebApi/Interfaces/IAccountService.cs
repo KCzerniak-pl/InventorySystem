@@ -2,7 +2,7 @@
 using InventorySystemWebApi.Models.Item;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InventorySystemWebApi.Intefaces
+namespace InventorySystemWebApi.Interfaces
 {
     public interface IAccountService
     {

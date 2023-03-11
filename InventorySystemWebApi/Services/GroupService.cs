@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Database;
 using InventorySystemWebApi.Exceptions;
-using InventorySystemWebApi.Intefaces;
+using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Models.Item;
 using InventorySystemWebApi.Models;
 using System.Globalization;

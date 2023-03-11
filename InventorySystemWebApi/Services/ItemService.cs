@@ -2,7 +2,7 @@
 using Database;
 using Database.Entities.Item;
 using InventorySystemWebApi.Exceptions;
-using InventorySystemWebApi.Intefaces;
+using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Models;
 using InventorySystemWebApi.Models.Item;
 using Microsoft.EntityFrameworkCore;

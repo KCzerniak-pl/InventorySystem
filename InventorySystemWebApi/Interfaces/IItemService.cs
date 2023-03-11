@@ -1,7 +1,7 @@
 ﻿using InventorySystemWebApi.Models;
 using InventorySystemWebApi.Models.Item;
 
-namespace InventorySystemWebApi.Intefaces
+namespace InventorySystemWebApi.Interfaces
 {
     public interface IItemService
     {

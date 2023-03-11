@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using InventorySystemWebApi.Intefaces;
+using InventorySystemWebApi.Interfaces;
 
 namespace InventorySystemWebApi.Controllers
 {
