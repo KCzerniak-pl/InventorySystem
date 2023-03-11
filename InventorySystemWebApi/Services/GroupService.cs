@@ -25,7 +25,8 @@ namespace InventorySystemWebApi.Services
             // Get all groups.
             var groupsAll = await _dbContext
                 .Groups
-                .Where(c => query.SearchPhrase == null || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
+                .AsNoTracking()
+                .Where(c => string.IsNullOrEmpty(query.SearchPhrase) || c.Name.ToLower().Contains(query.SearchPhrase.ToLower(CultureInfo.CurrentCulture)))
                 .ToListAsync();
 
             // Pagination.
@@ -35,11 +36,11 @@ namespace InventorySystemWebApi.Services
 
             if (!groups.Any())
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Groups not found.");
             }
 
-            // Mapping to DTO.
+            // Map to DTO.
             var groupsDto = _mapper.Map<IEnumerable<GroupDto>>(groups);
 
             // Wrapping groups.
@@ -53,15 +54,16 @@ namespace InventorySystemWebApi.Services
             // Get group about selected id.
             var group = await _dbContext
                 .Groups
+                .AsNoTracking()
                 .FirstOrDefaultAsync(i => i.Id == id);
 
             if (group is null)
             {
-                // Custom exception (used middleware).
+                // Custom exception (to be caught by middleware).
                 throw new NotFoundException("Group not found.");
             }
 
-            // Mapping to DTO.
+            // Map to DTO.
             var groupDto = _mapper.Map<GroupDto>(group);
 
             return groupDto;
