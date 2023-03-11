@@ -1,10 +1,9 @@
-﻿using InventorySystemWebApi.Models.Item;
+﻿using InventorySystemWebApi.Interfaces;
 using InventorySystemWebApi.Models;
+using InventorySystemWebApi.Models.Item;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using InventorySystemWebApi.Interfaces;
 
 namespace InventorySystemWebApi.Controllers
 {

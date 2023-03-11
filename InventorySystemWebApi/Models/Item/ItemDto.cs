@@ -1,6 +1,4 @@
-﻿using Database.Entities;
-
-namespace InventorySystemWebApi.Models.Item
+﻿namespace InventorySystemWebApi.Models.Item
 {
     public class ItemDto
     {

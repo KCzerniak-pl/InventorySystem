@@ -1,5 +1,5 @@
-﻿using InventorySystemWebApi.Models.Item;
-using InventorySystemWebApi.Models;
+﻿using InventorySystemWebApi.Models;
+using InventorySystemWebApi.Models.Item;
 
 namespace InventorySystemWebApi.Interfaces
 {

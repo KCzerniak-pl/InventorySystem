@@ -1,10 +1,6 @@
 ﻿using InventorySystemWebApi.Interfaces;
-using InventorySystemWebApi.Models;
 using InventorySystemWebApi.Models.Account;
-using InventorySystemWebApi.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace InventorySystemWebApi.Controllers
 {

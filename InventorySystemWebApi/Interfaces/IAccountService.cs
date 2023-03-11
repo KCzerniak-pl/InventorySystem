@@ -1,5 +1,4 @@
 ﻿using InventorySystemWebApi.Models.Account;
-using InventorySystemWebApi.Models.Item;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventorySystemWebApi.Interfaces
